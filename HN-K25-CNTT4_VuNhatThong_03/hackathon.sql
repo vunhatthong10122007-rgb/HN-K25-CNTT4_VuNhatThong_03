@@ -162,13 +162,3 @@ JOIN Bids b ON u.user_id = b.user_id
 JOIN Auction_Items ai ON b.item_id = ai.item_id
 WHERE ai.item_name = 'Rolex Datejust 1970';
 
--- 24
-SELECT * FROM Auction_Items 
-WHERE MONTH(end_time) = 11 AND YEAR(end_time) = 2025;
-
--- 25
-SELECT ai.item_name, u.full_name, b.bid_amount
-FROM Bids b
-JOIN Users u ON b.user_id = u.user_id
-JOIN Auction_Items ai ON b.item_id = ai.item_id
-WHERE b.bid_amount = (SELECT MAX(bid_amount) FROM Bids WHERE item_id = b.item_id);
